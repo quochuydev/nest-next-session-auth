@@ -1,119 +1,42 @@
-import type { NextPage } from "next";
-import { useState } from "react";
 import axios from "axios";
+import type { NextPage } from "next";
+import { useState, useEffect } from "react";
 
-const Home: NextPage = () => {
+import LoginForm from "../components/LoginForm";
+import RegisterForm from "../components/RegisterForm";
+
+const Home: NextPage = ({ user }: any) => {
   const [currentUser, setCurrentUser] =
     useState<{ username: string } | null>(null);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState<boolean>(false);
   const [isRegisterModalOpen, setIsRegisterModalOpen] =
     useState<boolean>(false);
-  const [loginUser, setLoginUser] = useState<{
-    username: string;
-    password: string;
-  }>({ username: "", password: "" });
-  const [registerUser, setRegisterUser] = useState<{
-    username: string;
-    newPassword: string;
-    confirmPassword: string;
-  }>({
-    username: "",
-    newPassword: "",
-    confirmPassword: "",
-  });
 
-  function onChangeRegisterUser(event: React.ChangeEvent<HTMLInputElement>) {
-    setRegisterUser((state) => ({
-      ...state,
-      [event.target.name]: event.target.value,
-    }));
-  }
-
-  function onChangeLoginUser(event: React.ChangeEvent<HTMLInputElement>) {
-    setLoginUser((state) => ({
-      ...state,
-      [event.target.name]: event.target.value,
-    }));
-  }
-
-  function onRegister() {
+  useEffect(() => {
     axios({
       baseURL: "http://localhost:5000",
-      url: "auth/register",
+      url: "auth/me",
+      withCredentials: true,
+    }).then((res) => setCurrentUser(res?.data));
+  }, []);
+
+  async function onLogout() {
+    await axios({
+      baseURL: "http://localhost:5000",
+      url: "auth/logout",
       method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      data: registerUser,
-    })
-      .then((res) => console.log(res))
-      .catch((error) => console.log(error));
-  }
+      withCredentials: true,
+    });
 
-  async function onLogin() {
-    try {
-      const result = await axios({
-        baseURL: "http://localhost:5000",
-        url: "auth/login",
-        method: "post",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        data: loginUser,
-      });
-
-      setCurrentUser(result.data);
-    } catch (error) {
-      console.log(error);
-    }
+    setCurrentUser(null);
   }
 
   return (
     <div>
       {isLoginModalOpen && (
-        <div className="login-modal">
-          <label htmlFor="username">username</label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            onChange={onChangeLoginUser}
-          />
-
-          <label htmlFor="password">password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            onChange={onChangeLoginUser}
-          />
-
-          <button onClick={onLogin}>Login</button>
-        </div>
+        <LoginForm onSuccess={(data: any) => setCurrentUser(data)} />
       )}
-
-      {isRegisterModalOpen && (
-        <div className="register-modal">
-          <label htmlFor="username">username</label>
-          <input type="text" id="username" onChange={onChangeRegisterUser} />
-
-          <label htmlFor="newPassword">newPassword</label>
-          <input
-            type="password"
-            id="newPassword"
-            onChange={onChangeRegisterUser}
-          />
-
-          <label htmlFor="confirmPassword">confirmPassword</label>
-          <input
-            type="password"
-            id="confirmPassword"
-            onChange={onChangeRegisterUser}
-          />
-
-          <button onClick={onRegister}>Register</button>
-        </div>
-      )}
+      {isRegisterModalOpen && <RegisterForm />}
 
       <nav>
         <div className="container flex justify-between mx-auto">
@@ -151,6 +74,9 @@ const Home: NextPage = () => {
                   onClick={() => setIsRegisterModalOpen(true)}
                 >
                   Register
+                </a>
+                <a href="#" className="font-bold" onClick={onLogout}>
+                  Logout
                 </a>
               </li>
               {currentUser && <li>user: {currentUser?.username}</li>}

@@ -1,8 +1,8 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class User extends BaseEntity {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn("uuid")
   public id: string;
 
   @Column({ nullable: true })
@@ -17,10 +17,10 @@ export class User extends BaseEntity {
   @Column({ nullable: true })
   public salt: string;
 
-  @Column({})
+  @Column({ unique: true })
   public username: string;
 
-  @Column({})
+  @Column({ nullable: false })
   public password: string;
 
   constructor(params?: Partial<User>) {

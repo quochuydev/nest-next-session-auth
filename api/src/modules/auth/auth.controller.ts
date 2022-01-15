@@ -1,51 +1,53 @@
-import { Body, Post, Controller, Res, Req, Get } from '@nestjs/common';
-import { Response } from 'express';
-import { AuthService } from './auth.service';
+import { Body, Post, Controller, Res, Req, Get } from "@nestjs/common";
+import { Response } from "express";
+import { LoginDto, RegisterDto } from "./auth.dto";
+import { AuthService } from "./auth.service";
+import { AuthUser } from "../../core/decorators";
+import { User } from "../user/user.entity";
 
-@Controller('auth')
+@Controller("auth")
 export class AuthController {
   constructor(private authService: AuthService) {}
 
-  @Post('register')
-  register(@Body() data) {
+  @Get("me")
+  getMe(@AuthUser("id") userId: string): Promise<User> {
+    if (!userId) {
+      return null;
+    }
+
+    return this.authService.getMe(userId);
+  }
+
+  @Post("register")
+  register(@Body() data: RegisterDto): Promise<User> {
     return this.authService.register(data);
   }
 
-  @Get('login')
-  async test(
-    @Req() req,
-    @Res({ passthrough: true }) res: Response,
-    @Body() data,
-  ) {
-    return 'test';
-  }
-
-  @Post('login')
+  @Post("login")
   async login(
     @Req() req,
     @Res({ passthrough: true }) res: Response,
-    @Body() data,
+    @Body() data: LoginDto
   ) {
     const user = await this.authService.login(data);
 
-    // TODO
-    // const token = await this.sessionService.generate({
-    //   ip: req.ip,
-    //   userAgent: req.headers['user-agent'],
-    //   user: { id: user.id },
-    // });
+    const token = await this.authService.generateSession({
+      ip: req.ip,
+      userAgent: req.headers["user-agent"],
+      user,
+    });
 
-    // res.cookie('token', token, {
-    //   maxAge: 30 * 24 * 60 * 60 * 1000,
-    //   httpOnly: true,
-    // });
+    res.cookie("token", token, {
+      maxAge: 30 * 24 * 60 * 60 * 1000,
+      httpOnly: true,
+    });
 
     return user;
   }
 
-  @Post('logout')
+  @Post("logout")
   logout(@Res({ passthrough: true }) res: Response) {
-    res.clearCookie('token');
+    res.clearCookie("token");
     return { success: true };
   }
 }

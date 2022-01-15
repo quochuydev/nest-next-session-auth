@@ -1,14 +1,14 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Role extends BaseEntity {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn("uuid")
   public id: string;
 
   @Column({ nullable: true })
   public name: string;
 
-  @Column({ type: 'simple-array', default: [] })
+  @Column({ type: "simple-array", default: [] })
   public permissions: string[];
 
   constructor(params?: Partial<Role>) {
