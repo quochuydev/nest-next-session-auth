@@ -17,7 +17,9 @@ const Home: NextPage = ({ user }: any) => {
       baseURL: "http://localhost:5000",
       url: "auth/me",
       withCredentials: true,
-    }).then((res) => setCurrentUser(res?.data));
+    })
+      .then((res) => setCurrentUser(res?.data))
+      .catch((error) => console.error(error));
   }, []);
 
   async function onLogout() {
@@ -39,43 +41,43 @@ const Home: NextPage = ({ user }: any) => {
       {isRegisterModalOpen && <RegisterForm />}
 
       <nav>
-        <div className="container flex justify-between mx-auto">
-          <a href="#" className="font-bold">
+        <div className="container flex justify-between mx-auto items-center">
+          <a href="#" className="font-bold text-4xl">
             SHMW
           </a>
           <div className="hidden lg:block">
             <ul className="inline-flex">
               <li>
-                <a href="#" className="font-bold">
+                <a href="#" className="font-bold px-4">
                   Home
                 </a>
               </li>
               <li>
-                <a href="#" className="font-bold">
+                <a href="#" className="font-bold px-4">
                   About
                 </a>
               </li>
               <li>
-                <a href="#" className="font-bold">
+                <a href="#" className="font-bold px-4">
                   Contact
                 </a>
               </li>
               <li>
                 <a
                   href="#"
-                  className="font-bold"
+                  className="font-bold px-4"
                   onClick={() => setIsLoginModalOpen(true)}
                 >
                   Login
                 </a>
                 <a
                   href="#"
-                  className="font-bold"
+                  className="font-bold px-4"
                   onClick={() => setIsRegisterModalOpen(true)}
                 >
                   Register
                 </a>
-                <a href="#" className="font-bold" onClick={onLogout}>
+                <a href="#" className="font-bold px-4" onClick={onLogout}>
                   Logout
                 </a>
               </li>
@@ -85,31 +87,57 @@ const Home: NextPage = ({ user }: any) => {
         </div>
       </nav>
 
-      <div className="container mx-auto">
-        <h2>Smart Health Monitoring Wristwatch</h2>
-        <h3>Monitor your health vitals smartly anywhere you go</h3>
-        <button>Pre Order</button>
+      <div
+        style={{
+          background: "linear-gradient(90deg, #667eea 0%, #764ba2 100%)",
+        }}
+      >
+        <div className="container mx-auto py-20">
+          <h2 className="text-4xl font-bold mb-2 text-white">
+            Smart Health Monitoring Wristwatch
+          </h2>
+          <h3 className="text-2xl mb-8 text-gray-200">
+            Monitor your health vitals smartly anywhere you go
+          </h3>
+          <button className="bg-white font-bold py-4 px-8 rounded-full shadow-lg uppercase">
+            Pre Order
+          </button>
+        </div>
       </div>
 
-      <section className="container mx-auto">
-        <h2 className="text-center font-bold">Features</h2>
+      <section className="container mx-auto py-10">
+        <h2 className="text-center font-bold text-4xl">Features</h2>
       </section>
 
       <section style={{ backgroundColor: "#667eea" }}>
-        <div className="container mx-auto">
-          <h2>Limited in Stock</h2>
-          <h3>Get yourself the Smart Health Monitoring Wristwatch</h3>
-          <button>Pre Order</button>
+        <div className="container mx-auto text-center py-10">
+          <h2 className="text-2xl font-bold mb-2 text-white">
+            Limited in Stock
+          </h2>
+          <h3 className="text-xl my-4 text-white">
+            Get yourself the Smart Health Monitoring Wristwatch
+          </h3>
+          <button className="bg-white font-bold py-2 px-4 mb-4 rounded-full shadow-lg uppercase">
+            Pre Order
+          </button>
         </div>
       </section>
 
       <footer>
         <div className="container mx-auto">
           <div className="flex flex-wrap">
-            <div className="w-1/4">Social</div>
-            <div className="w-1/4">Contact</div>
-            <div className="w-1/4">Services</div>
-            <div className="w-1/4">Map</div>
+            <div className="w-1/4">
+              <h5 className="uppercase mb-6 font-bold">Social</h5>
+            </div>
+            <div className="w-1/4">
+              <h5 className="uppercase mb-6 font-bold">Contact</h5>
+            </div>
+            <div className="w-1/4">
+              <h5 className="uppercase mb-6 font-bold">Services</h5>
+            </div>
+            <div className="w-1/4">
+              <h5 className="uppercase mb-6 font-bold">Map</h5>
+            </div>
           </div>
         </div>
       </footer>
