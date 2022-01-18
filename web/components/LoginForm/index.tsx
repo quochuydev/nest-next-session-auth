@@ -57,20 +57,28 @@ function LoginForm({ onClose, onSuccess }: any): React.ReactElement {
       }
     >
       <div className="login-modal">
-        <label htmlFor="username">username</label>
+        <label htmlFor="username" className="block text-gray font-bold">
+          username
+        </label>
         <input
           type="text"
           id="username"
           name="username"
           onChange={onChangeLoginUser}
+          placeholder="username"
+          className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
         />
 
-        <label htmlFor="password">password</label>
+        <label htmlFor="password" className="block text-gray font-bold mt-5">
+          password
+        </label>
         <input
           type="password"
           id="password"
           name="password"
           onChange={onChangeLoginUser}
+          placeholder="password"
+          className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
         />
       </div>
     </Modal>
