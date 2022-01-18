@@ -7,7 +7,10 @@ function LoginForm({ onClose, onSuccess }: any): React.ReactElement {
   const [loginUser, setLoginUser] = useState<{
     username: string;
     password: string;
-  }>({ username: "", password: "" });
+  }>({
+    username: "",
+    password: "",
+  });
 
   function onChangeLoginUser(event: React.ChangeEvent<HTMLInputElement>) {
     setLoginUser((state) => ({
@@ -56,7 +59,7 @@ function LoginForm({ onClose, onSuccess }: any): React.ReactElement {
       }
     >
       <div className="login-modal">
-        <label htmlFor="username" className="block text-gray font-bold">
+        <label htmlFor="username" className="text-gray font-bold">
           username
         </label>
         <input
@@ -68,7 +71,7 @@ function LoginForm({ onClose, onSuccess }: any): React.ReactElement {
           className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
         />
 
-        <label htmlFor="password" className="block text-gray font-bold mt-5">
+        <label htmlFor="password" className="text-gray font-bold mt-5">
           password
         </label>
         <input

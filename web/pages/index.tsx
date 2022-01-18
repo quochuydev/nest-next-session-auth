@@ -13,11 +13,19 @@ const Home: NextPage = () => {
     useState<boolean>(false);
 
   useEffect(() => {
-    axios({
-      url: "auth/me",
-    })
-      .then((res) => setCurrentUser(res?.data))
-      .catch((error) => console.error(error));
+    const getCurrentUser = async () => {
+      try {
+        const result = await axios({
+          url: "auth/me",
+        });
+
+        setCurrentUser(result?.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    getCurrentUser();
   }, []);
 
   async function onLogout() {
