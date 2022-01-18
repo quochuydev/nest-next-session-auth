@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import LoginForm from "../components/LoginForm";
 import RegisterForm from "../components/RegisterForm";
 
-const Home: NextPage = ({ user }: any) => {
+const Home: NextPage = () => {
   const [currentUser, setCurrentUser] =
     useState<{ username: string } | null>(null);
   const [isLoginModalOpen, setIsLoginModalOpen] = useState<boolean>(false);
@@ -35,11 +35,6 @@ const Home: NextPage = ({ user }: any) => {
 
   return (
     <div>
-      {isLoginModalOpen && (
-        <LoginForm onSuccess={(data: any) => setCurrentUser(data)} />
-      )}
-      {isRegisterModalOpen && <RegisterForm />}
-
       <nav>
         <div className="container flex justify-between mx-auto items-center">
           <a href="#" className="font-bold text-4xl">
@@ -63,23 +58,33 @@ const Home: NextPage = ({ user }: any) => {
                 </a>
               </li>
               <li>
-                <a
-                  href="#"
-                  className="font-bold px-4"
-                  onClick={() => setIsLoginModalOpen(true)}
-                >
-                  Login
-                </a>
-                <a
-                  href="#"
-                  className="font-bold px-4"
-                  onClick={() => setIsRegisterModalOpen(true)}
-                >
-                  Register
-                </a>
-                <a href="#" className="font-bold px-4" onClick={onLogout}>
-                  Logout
-                </a>
+                {!currentUser && (
+                  <a
+                    href="#"
+                    className="font-bold px-4"
+                    onClick={() => setIsLoginModalOpen(true)}
+                  >
+                    Login
+                  </a>
+                )}
+              </li>
+              <li>
+                {!currentUser && (
+                  <a
+                    href="#"
+                    className="font-bold px-4"
+                    onClick={() => setIsRegisterModalOpen(true)}
+                  >
+                    Register
+                  </a>
+                )}
+              </li>
+              <li>
+                {currentUser && (
+                  <a href="#" className="font-bold px-4" onClick={onLogout}>
+                    Logout
+                  </a>
+                )}
               </li>
               {currentUser && <li>user: {currentUser?.username}</li>}
             </ul>
@@ -141,6 +146,16 @@ const Home: NextPage = ({ user }: any) => {
           </div>
         </div>
       </footer>
+
+      {isLoginModalOpen && (
+        <LoginForm
+          onSuccess={(data: any) => setCurrentUser(data)}
+          onClose={() => setIsLoginModalOpen(false)}
+        />
+      )}
+      {isRegisterModalOpen && (
+        <RegisterForm onClose={() => setIsRegisterModalOpen(false)} />
+      )}
     </div>
   );
 };

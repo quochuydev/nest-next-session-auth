@@ -1,7 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
 
-function LoginForm({ onSuccess }: any): React.ReactElement {
+import Modal from "../Modal";
+
+function LoginForm({ onClose, onSuccess }: any): React.ReactElement {
   const [loginUser, setLoginUser] = useState<{
     username: string;
     password: string;
@@ -34,25 +36,44 @@ function LoginForm({ onSuccess }: any): React.ReactElement {
   }
 
   return (
-    <div className="login-modal">
-      <label htmlFor="username">username</label>
-      <input
-        type="text"
-        id="username"
-        name="username"
-        onChange={onChangeLoginUser}
-      />
+    <Modal
+      title={"Login"}
+      footer={
+        <>
+          <button
+            className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+            type="button"
+            onClick={onClose}
+          >
+            Close
+          </button>
+          <button
+            onClick={onLogin}
+            className="bg-emerald-500 text-white active:bg-emerald-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+          >
+            Login
+          </button>
+        </>
+      }
+    >
+      <div className="login-modal">
+        <label htmlFor="username">username</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          onChange={onChangeLoginUser}
+        />
 
-      <label htmlFor="password">password</label>
-      <input
-        type="password"
-        id="password"
-        name="password"
-        onChange={onChangeLoginUser}
-      />
-
-      <button onClick={onLogin}>Login</button>
-    </div>
+        <label htmlFor="password">password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          onChange={onChangeLoginUser}
+        />
+      </div>
+    </Modal>
   );
 }
 
