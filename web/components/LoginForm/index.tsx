@@ -1,6 +1,6 @@
 import { useState } from "react";
-import axios from "axios";
 
+import axios from "../../lib/axios";
 import Modal from "../Modal";
 
 function LoginForm({ onClose, onSuccess }: any): React.ReactElement {
@@ -19,17 +19,16 @@ function LoginForm({ onClose, onSuccess }: any): React.ReactElement {
   async function onLogin() {
     try {
       const result = await axios({
-        baseURL: "http://localhost:5000",
         url: "auth/login",
         method: "post",
         headers: {
           "Content-Type": "application/json",
         },
         data: loginUser,
-        withCredentials: true,
       });
 
-      onSuccess && onSuccess(result.data);
+      onSuccess(result.data);
+      onClose();
     } catch (error) {
       console.log(error);
     }

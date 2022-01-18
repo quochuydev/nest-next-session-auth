@@ -1,6 +1,6 @@
 import { useState } from "react";
-import axios from "axios";
 
+import axios from "../../lib/axios";
 import Modal from "../Modal";
 
 function RegisterForm({ onClose }: { onClose: any }): React.ReactElement {
@@ -25,14 +25,12 @@ function RegisterForm({ onClose }: { onClose: any }): React.ReactElement {
 
   function onRegister() {
     axios({
-      baseURL: "http://localhost:5000",
       url: "auth/register",
       method: "post",
       headers: {
         "Content-Type": "application/json",
       },
       data: registerUser,
-      withCredentials: true,
     })
       .then((res) => console.log(res))
       .catch((error) => console.log(error));

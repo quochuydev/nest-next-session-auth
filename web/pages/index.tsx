@@ -1,7 +1,7 @@
-import axios from "axios";
 import type { NextPage } from "next";
 import { useState, useEffect } from "react";
 
+import axios from "../lib/axios";
 import LoginForm from "../components/LoginForm";
 import RegisterForm from "../components/RegisterForm";
 
@@ -14,9 +14,7 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     axios({
-      baseURL: "http://localhost:5000",
       url: "auth/me",
-      withCredentials: true,
     })
       .then((res) => setCurrentUser(res?.data))
       .catch((error) => console.error(error));
@@ -24,10 +22,8 @@ const Home: NextPage = () => {
 
   async function onLogout() {
     await axios({
-      baseURL: "http://localhost:5000",
       url: "auth/logout",
       method: "post",
-      withCredentials: true,
     });
 
     setCurrentUser(null);
