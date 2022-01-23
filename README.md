@@ -3,7 +3,7 @@
 Installation
 
 ```
-(cd infra/dev && docker-compose up)
+(cd infra/local && docker-compose up)
 (cd api && yarn)
 (cd web && yarn)
 ```
