@@ -23,17 +23,23 @@ function RegisterForm({ onClose }: { onClose: any }): React.ReactElement {
     }));
   }
 
-  function onRegister() {
-    axios({
-      url: "auth/register",
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      data: registerUser,
-    })
-      .then((res) => console.log(res))
-      .catch((error) => console.log(error));
+  async function onRegister() {
+    try {
+      const result = await axios({
+        url: "auth/register",
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        data: registerUser,
+      });
+
+      console.log(result);
+    } catch (error) {
+      console.log(error);
+    }
+
+    onClose();
   }
 
   return (
