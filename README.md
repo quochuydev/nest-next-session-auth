@@ -4,18 +4,19 @@ Installation
 
 ```
 (cd infra/local && docker-compose up)
-(cd api && yarn)
 (cd web && yarn)
+(cd api && yarn)
+(cd api && yarn migration:run)
 ```
 
 Web
 
 ```
-yarn dev
+(cd web && yarn dev)
 ```
 
 API
 
 ```
-yarn start:dev
+(cd api && yarn start:dev)
 ```
