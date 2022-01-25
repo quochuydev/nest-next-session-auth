@@ -6,9 +6,15 @@ import { ORMConfig } from "./config/ormconfig";
 import { AuthModule } from "./modules/auth/auth.module";
 import { UserModule } from "./modules/user/user.module";
 import { AuthMiddleware } from "./modules/auth/auth.middleware";
+import { RoleModule } from "./modules/roles/role.module";
 
 @Module({
-  imports: [TypeOrmModule.forRoot(ORMConfig), AuthModule, UserModule],
+  imports: [
+    TypeOrmModule.forRoot(ORMConfig),
+    AuthModule,
+    UserModule,
+    RoleModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
