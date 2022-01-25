@@ -1,9 +1,9 @@
 version: "3"
 
 services:
-  db:
+  dev_postgres:
     image: postgres:11-alpine
-    container_name: postgres
+    container_name: dev_postgres
     ports:
       - "5432:5432"
     environment:

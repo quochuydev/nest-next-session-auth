@@ -1,0 +1,13 @@
+{
+  "name": "@garrio/e2e",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "./node_modules/.bin/playwright test --config=./playwright.config.ts"
+  },
+  "dependencies": {
+    "@playwright/test": "^1.18.0",
+    "@types/node": "^17.0.12",
+    "playwright": "^1.18.0"
+  }
+}
