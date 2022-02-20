@@ -1,7 +1,7 @@
 version: "3"
 
 services:
-  db:
+  postgres:
     image: postgres:11-alpine
     container_name: postgres
     ports:
@@ -12,5 +12,6 @@ services:
       POSTGRES_PASSWORD: secret
     volumes:
       - postgres_data:/var/lib/postgresql/data
+
 volumes:
   postgres_data:

@@ -1,11 +1,11 @@
 import * as cookieParser from "cookie-parser";
-import * as helmet from "helmet";
 import { NestFactory } from "@nestjs/core";
 import { NestExpressApplication } from "@nestjs/platform-express";
 import { ValidationPipe } from "@nestjs/common";
 
 import { AppModule } from "./app.module";
 import { HttpExceptionFilter } from "./filters/http-exception.filter";
+import config from "./configulation";
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {
@@ -32,7 +32,7 @@ async function bootstrap() {
   app.useGlobalFilters(new HttpExceptionFilter());
 
   await app.listen(5000, () => {
-    console.log("running");
+    console.log("running", config.db.url);
   });
 }
 bootstrap();
