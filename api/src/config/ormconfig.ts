@@ -1,10 +1,11 @@
 import { ConnectionOptions } from "typeorm";
 import * as path from "path";
+import { environment } from "./enviroment";
 
 export const ORMConfig: ConnectionOptions = {
   type: "postgres",
   host: "localhost",
-  port: 5432,
+  port: environment.db.port,
   username: "postgres",
   password: "secret",
   database: "kproject",

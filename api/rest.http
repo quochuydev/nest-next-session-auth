@@ -1,0 +1,8 @@
+
+POST http://localhost:4000/roles
+content-type: application/json
+
+{
+    "name": "leader",
+    "permissions": ["write_user"]
+}

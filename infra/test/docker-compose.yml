@@ -1,11 +1,11 @@
 version: "3"
 
 services:
-  e2e_postgres:
+  test_postgres:
     image: postgres:11-alpine
-    container_name: e2e_postgres
+    container_name: test_postgres
     ports:
-      - "5432:5432"
+      - "5433:5432"
     environment:
       POSTGRES_DB: kproject
       POSTGRES_USER: postgres
