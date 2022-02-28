@@ -12,7 +12,7 @@ const config: PlaywrightTestConfig = {
   testMatch: "**/*.spec.ts",
   globalSetup: require.resolve("./global-setup"),
   use: {
-    headless: process.env.NODE_ENV === "production",
+    headless: true,
     browserName: "chromium",
     ignoreHTTPSErrors: true,
     bypassCSP: true,
