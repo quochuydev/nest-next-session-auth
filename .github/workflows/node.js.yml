@@ -25,5 +25,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: (cd infra/e2e && docker-compose up -d)
       - run: (cd web && yarn)
-      - run: (cd web && yarn dev)
+      - run: |
+          npm ci
+          npm run export
       - run: dockerize -skip-tls-verify -timeout 480s -wait-retry-interval 15s -wait-http-status-code 200 -wait http://localhost:3001
