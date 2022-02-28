@@ -28,6 +28,7 @@ jobs:
       - run: (cd web && yarn export)
       - run: (cd web && yarn start) &
       - run: until nc -z localhost 3000; do echo 'Wait web to startup...' && sleep 5; done;
+      - run: (cd api && yarn)
       - run: (cd api && yarn build)
       - run: (cd api && yarn start:prod)
       - run: until nc -z localhost 4000; do echo 'Wait backend to startup...' && sleep 5; done;
@@ -51,6 +52,7 @@ jobs:
       - run: (cd web && yarn export)
       - run: (cd web && yarn start) &
       - run: until nc -z localhost 3000; do echo 'Wait web to startup...' && sleep 5; done;
+      - run: (cd api && yarn)
       - run: (cd api && yarn build)
       - run: (cd api && yarn start:prod)
       - run: until nc -z localhost 4000; do echo 'Wait backend to startup...' && sleep 5; done;
