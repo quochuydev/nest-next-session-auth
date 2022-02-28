@@ -23,20 +23,20 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Setup infra docker
+      # - name: Setup infra docker
       - run: (cd infra/e2e && docker-compose up -d)
       - run: docker ps
-      - name: Setup web
+      # - name: Setup web
       - run: (cd web && yarn)
       - run: (cd web && yarn export)
       - run: (cd web && yarn start) &
       - run: until nc -z localhost 3001; do echo 'Wait web to startup...' && sleep 5; done;
-      - name: Setup backend
+      # - name: Setup backend
       - run: (cd api && yarn)
       - run: (cd api && yarn build)
       - run: (cd api && yarn start:e2e) &
       - run: until nc -z localhost 4000; do echo 'Wait backend to startup...' && sleep 5; done;
-      - name: Run test
+      # - name: Run test
       - run: (cd e2e && yarn)
       - run: (cd e2e && yarn test)
       - name: Upload test results
@@ -59,14 +59,14 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Setup infra docker
+      # - name: Setup infra docker
       - run: (cd infra/prod && docker-compose up -d)
-      - name: Setup web
+      # - name: Setup web
       - run: (cd web && yarn)
       - run: (cd web && yarn export)
       - run: (cd web && yarn start) &
       - run: until nc -z localhost 3001; do echo 'Wait web to startup...' && sleep 5; done;
-      - name: Setup backend
+      # - name: Setup backend
       - run: (cd api && yarn)
       - run: (cd api && yarn build)
       - run: (cd api && yarn start:prod) &
