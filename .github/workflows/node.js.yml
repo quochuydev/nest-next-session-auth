@@ -34,7 +34,6 @@ jobs:
       - run: (cd api && yarn start:e2e) &
       - run: until nc -z localhost 4000; do echo 'Wait backend to startup...' && sleep 5; done;
       - run: (cd e2e && yarn)
-      - run: echo ${NODE_ENV}
       - run: (cd e2e && yarn test)
 
   build:
