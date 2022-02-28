@@ -27,7 +27,7 @@ jobs:
       - run: (cd web && yarn)
       - run: (cd web && yarn export)
       - run: (cd web && yarn start) &
-      - run: dockerize -skip-tls-verify -timeout 480s -wait-retry-interval 15s -wait-http-status-code 200 -wait http://localhost:3000
+      - run: until nc -z localhost 3000; do echo 'Wait web to startup...' && sleep 5; done;
       - run: (cd api && yarn build)
       - run: (cd api && yarn start:prod)
       - run: until nc -z localhost 4000; do echo 'Wait backend to startup...' && sleep 5; done;
@@ -50,6 +50,6 @@ jobs:
       - run: (cd web && yarn)
       - run: (cd web && yarn export)
       - run: (cd web && yarn start) &
-      - run: dockerize -skip-tls-verify -timeout 480s -wait-retry-interval 15s -wait-http-status-code 200 -wait http://localhost:3000
+      - run: until nc -z localhost 3000; do echo 'Wait web to startup...' && sleep 5; done;
       - run: (cd api && yarn build)
       - run: (cd api && yarn start:prod)
