@@ -25,7 +25,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: (cd infra/e2e && docker-compose up -d)
       - run: (cd web && yarn)
-      - run: (cd web && yarn build)
+      - run: (cd web && yarn export)
       - run: (cd web && yarn start)
       - run: dockerize -skip-tls-verify -timeout 480s -wait-retry-interval 15s -wait-http-status-code 200 -wait http://localhost:3000
       - run: (cd api && yarn build)
@@ -48,7 +48,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: (cd infra/e2e && docker-compose up -d)
       - run: (cd web && yarn)
-      - run: (cd web && yarn build)
+      - run: (cd web && yarn export)
       - run: (cd web && yarn start)
       - run: dockerize -skip-tls-verify -timeout 480s -wait-retry-interval 15s -wait-http-status-code 200 -wait http://localhost:3000
       - run: (cd api && yarn build)
