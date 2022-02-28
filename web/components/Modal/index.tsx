@@ -31,7 +31,7 @@ const Modal = ({
             <div className="relative p-4 flex-auto">{children}</div>
             {/*footer*/}
             {footer && (
-              <div className="flex items-center justify-end p-4 border-t border-solid border-blueGray-200 rounded-b">
+              <div className="flex items-center justify-end p-4 border-t rounded-b">
                 {footer}
               </div>
             )}

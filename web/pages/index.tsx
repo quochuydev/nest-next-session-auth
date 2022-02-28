@@ -6,8 +6,9 @@ import LoginForm from "../components/LoginForm";
 import RegisterForm from "../components/RegisterForm";
 
 const Home: NextPage = () => {
-  const [currentUser, setCurrentUser] =
-    useState<{ username: string } | null>(null);
+  const [currentUser, setCurrentUser] = useState<{ username: string } | null>(
+    null
+  );
   const [isLoginModalOpen, setIsLoginModalOpen] = useState<boolean>(false);
   const [isRegisterModalOpen, setIsRegisterModalOpen] =
     useState<boolean>(false);
@@ -42,7 +43,7 @@ const Home: NextPage = () => {
       <nav>
         <div className="container flex justify-between mx-auto items-center">
           <a href="#" className="font-bold text-4xl">
-            SHMW
+            QHD
           </a>
           <div className="hidden lg:block">
             <ul className="inline-flex">
@@ -134,18 +135,20 @@ const Home: NextPage = () => {
 
       <footer>
         <div className="container mx-auto">
-          <div className="flex flex-wrap">
+          <div className="flex flex-wrap mt-4">
             <div className="w-1/4">
-              <h5 className="uppercase mb-6 font-bold">Social</h5>
+              <h5 className="uppercase font-bold">Social</h5>
             </div>
             <div className="w-1/4">
-              <h5 className="uppercase mb-6 font-bold">Contact</h5>
+              <h5 className="uppercase font-bold">Contact</h5>
+              <p>Phone number: 0382986838</p>
+              <p>Email: quochuy.dev@gmail.com</p>
             </div>
             <div className="w-1/4">
-              <h5 className="uppercase mb-6 font-bold">Services</h5>
+              <h5 className="uppercase font-bold">Services</h5>
             </div>
             <div className="w-1/4">
-              <h5 className="uppercase mb-6 font-bold">Map</h5>
+              <h5 className="uppercase font-bold">Map</h5>
             </div>
           </div>
         </div>

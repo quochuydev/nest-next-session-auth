@@ -1,4 +1,5 @@
 import { Browser, chromium, Page, BrowserContext } from "@playwright/test";
+import routeUtils from "./utils/route";
 
 async function globalSetup() {
   const browser: Browser = await chromium.launch();
@@ -9,8 +10,7 @@ async function globalSetup() {
   });
 
   const page: Page = await browserContext.newPage();
-
-  await page.goto(`https://google.com/`, { timeout: 0 });
+  await page.goto(`${routeUtils.webUrl}`, { timeout: 0 });
 }
 
 export default globalSetup;

@@ -1,6 +1,6 @@
-<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="0.51">
-<testsuite name="register.spec.ts" timestamp="1643120355355" hostname="" tests="1" failures="0" skipped="0" time="0.005" errors="0">
-<testcase name="test case 1" classname="register.spec.ts:3:1 › test case 1" time="0.005">
+<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="4.289">
+<testsuite name="register-and-login-account.spec.ts" timestamp="1646035282578" hostname="" tests="1" failures="0" skipped="0" time="3.651" errors="0">
+<testcase name="Register a new account and login" classname="register-and-login-account.spec.ts:18:1 › Register a new account and login" time="3.651">
 </testcase>
 </testsuite>
 </testsuites>

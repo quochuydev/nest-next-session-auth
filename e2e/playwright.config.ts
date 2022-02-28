@@ -1,4 +1,5 @@
 import { PlaywrightTestConfig } from "@playwright/test";
+console.log("env", process.env.NODE_ENV);
 
 const config: PlaywrightTestConfig = {
   workers: process.env.CI ? 2 : undefined,
@@ -11,7 +12,7 @@ const config: PlaywrightTestConfig = {
   testMatch: "**/*.spec.ts",
   globalSetup: require.resolve("./global-setup"),
   use: {
-    headless: true,
+    headless: process.env.NODE_ENV === "production",
     browserName: "chromium",
     ignoreHTTPSErrors: true,
     bypassCSP: true,
