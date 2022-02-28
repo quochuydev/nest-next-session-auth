@@ -27,3 +27,9 @@ E2E test
 (cd infra/e2e && docker-compose up -d)
 (cd e2e && yarn test)
 ```
+
+STOP
+
+```
+(cd infra/local && docker-compose down)
+```

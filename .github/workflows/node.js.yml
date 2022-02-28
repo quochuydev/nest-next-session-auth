@@ -24,5 +24,4 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: (cd web && yarn)
-      - run: (cd web && yarn build)
-      - run: (cd web && yarn start)
+      - run: (cd web && yarn dev)
