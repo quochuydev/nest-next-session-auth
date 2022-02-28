@@ -50,7 +50,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      - run: (cd infra/e2e && docker-compose up -d)
+      - run: (cd infra/prod && docker-compose up -d)
       - run: (cd web && yarn)
       - run: (cd web && yarn export)
       - run: (cd web && yarn start) &
