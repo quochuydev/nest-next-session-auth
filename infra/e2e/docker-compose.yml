@@ -5,7 +5,7 @@ services:
     image: postgres:11-alpine
     container_name: e2e_postgres
     ports:
-      - "5434:5433"
+      - "5342:5432"
     environment:
       POSTGRES_DB: kproject
       POSTGRES_USER: postgres
