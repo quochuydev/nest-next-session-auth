@@ -1,5 +1,4 @@
 import { PlaywrightTestConfig } from "@playwright/test";
-console.log("env", process.env.NODE_ENV);
 
 const config: PlaywrightTestConfig = {
   workers: process.env.CI ? 2 : undefined,

@@ -25,15 +25,15 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: (cd infra/e2e && docker-compose up -d)
       - run: docker ps
-      - run: (cd web && yarn)
+      - run: (cd web && yarn) &
+      - run: (cd api && yarn) &
+      - run: (cd e2e && yarn)
       - run: (cd web && yarn export)
       - run: (cd web && yarn start) &
       - run: until nc -z localhost 3001; do echo 'Wait web to startup...' && sleep 5; done;
-      - run: (cd api && yarn)
       - run: (cd api && yarn build)
       - run: (cd api && yarn start:e2e) &
       - run: until nc -z localhost 4000; do echo 'Wait backend to startup...' && sleep 5; done;
-      - run: (cd e2e && yarn)
       - run: (cd e2e && yarn test)
 
   build:
@@ -50,11 +50,11 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: (cd infra/prod && docker-compose up -d)
-      - run: (cd web && yarn)
+      - run: (cd web && yarn) &
+      - run: (cd api && yarn)
       - run: (cd web && yarn export)
       - run: (cd web && yarn start) &
       - run: until nc -z localhost 3001; do echo 'Wait web to startup...' && sleep 5; done;
-      - run: (cd api && yarn)
       - run: (cd api && yarn build)
       - run: (cd api && yarn start:prod) &
       - run: until nc -z localhost 4000; do echo 'Wait backend to startup...' && sleep 5; done;

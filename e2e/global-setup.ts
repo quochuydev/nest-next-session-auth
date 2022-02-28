@@ -10,7 +10,7 @@ async function globalSetup() {
   });
 
   const page: Page = await browserContext.newPage();
-  await page.goto(`${routeUtils.webUrl}`, { timeout: 0 });
+  // await page.goto(`${routeUtils.webUrl}`, { timeout: 0 });
 }
 
 export default globalSetup;
