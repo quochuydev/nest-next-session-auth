@@ -10,7 +10,7 @@ on:
     branches: [main]
 
 jobs:
-  build:
+  e2e:
     runs-on: ubuntu-latest
 
     strategy:
@@ -28,4 +28,26 @@ jobs:
       - run: |
           npm ci
           npm run export
+      - run: dockerize -skip-tls-verify -timeout 480s -wait-retry-interval 15s -wait-http-status-code 200 -wait http://localhost:3001
+      - run: (cd e2e && yarn test)
+
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.13.0]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: (cd infra/e2e && docker-compose up -d)
+      - run: (cd web && yarn)
+      - run: |
+          npm ci
+          (cd web && yarn export)
+      - run: (cd web && yarn start)
       - run: dockerize -skip-tls-verify -timeout 480s -wait-retry-interval 15s -wait-http-status-code 200 -wait http://localhost:3001
