@@ -34,7 +34,7 @@ jobs:
       # - name: Setup backend
       - run: (cd api && yarn)
       - run: (cd api && yarn build)
-      - run: (cd api && DB_URL=postgresql://postgres:secret@localhost:5342/kproject?schema=public yarn migration:run)
+      - run: (cd api && yarn migration:e2e:run)
       - run: (cd api && yarn start:e2e) &
       - run: until nc -z localhost 4000; do echo 'Wait backend to startup...' && sleep 5; done;
       # - name: Run test
