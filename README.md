@@ -3,7 +3,7 @@
 Installation
 
 ```
-(cd infra/local && docker-compose up -d)
+(cd infra/dev && docker-compose up -d)
 (cd web && yarn)
 (cd api && yarn)
 (cd api && yarn migration:run)
@@ -31,5 +31,5 @@ E2E test
 STOP
 
 ```
-(cd infra/local && docker-compose down)
+(cd infra/dev && docker-compose down)
 ```

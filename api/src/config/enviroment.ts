@@ -6,6 +6,8 @@ const getEnv = (key: string) => {
 
 export const environment = {
   db: {
-    port: getEnv("DB_PORT") || 5432,
+    url:
+      getEnv("DB_URL") ||
+      "postgresql://postgres:secret@localhost:5432/kproject?schema=public",
   },
 };

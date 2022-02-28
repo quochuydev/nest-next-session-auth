@@ -4,11 +4,12 @@ import { environment } from "./enviroment";
 
 export const ORMConfig: ConnectionOptions = {
   type: "postgres",
-  host: "localhost",
-  port: environment.db.port,
-  username: "postgres",
-  password: "secret",
-  database: "kproject",
+  url: environment.db.url,
+  // host: environment.db.host,
+  // port: environment.db.port,
+  // username: "postgres",
+  // password: "secret",
+  // database: "kproject",
   extra: {
     charset: "utf8mb4_unicode_ci",
   },
