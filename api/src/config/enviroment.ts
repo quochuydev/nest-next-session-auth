@@ -5,6 +5,9 @@ const getEnv = (key: string) => {
 };
 
 export const environment = {
+  app: {
+    host: "http://localhost:4000",
+  },
   db: {
     url:
       getEnv("DB_URL") ||

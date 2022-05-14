@@ -1,19 +1,19 @@
-import { Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
-import * as sharp from 'sharp';
-import * as fs from 'fs';
+import { Injectable } from "@nestjs/common";
+import { InjectRepository } from "@nestjs/typeorm";
+import { Repository } from "typeorm";
+import * as sharp from "sharp";
+import * as fs from "fs";
 
-import env from '../../config/environment';
-import { File } from './file.entity';
-import { IServiceFile } from './file.interface';
-import { genKey } from './file.util';
+import env from "../../config/enviroment";
+import { File } from "./file.entity";
+import { IServiceFile } from "./file.interface";
+import { genKey } from "./file.util";
 
 @Injectable()
 export class FileService {
   constructor(
     @InjectRepository(File)
-    private readonly fileRepository: Repository<File>,
+    private readonly fileRepository: Repository<File>
   ) {}
 
   paginate(query: any) {
