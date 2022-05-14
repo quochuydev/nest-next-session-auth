@@ -11,3 +11,5 @@ export const environment = {
       "postgresql://postgres:secret@localhost:5432/kproject?schema=public",
   },
 };
+
+export default environment;

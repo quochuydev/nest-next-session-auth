@@ -1,23 +1,18 @@
-# nest-next-session-auth
+eal# nest-next-session-auth
 
 Installation
 
 ```
-(cd infra/dev && docker-compose up -d)
-(cd web && yarn)
-(cd api && yarn)
+(cd infra/dev && docker-compose up -d) &&
+(cd web && yarn) &
+(cd api && yarn) &
 (cd api && yarn migration:run)
 ```
 
-Web
+Web & API
 
 ```
-(cd web && yarn dev)
-```
-
-API
-
-```
+(cd web && yarn dev) &
 (cd api && yarn start:dev)
 ```
 
