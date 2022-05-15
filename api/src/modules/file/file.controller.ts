@@ -39,9 +39,9 @@ export class FileController {
 
   @Post()
   @UseInterceptors(FileFieldsInterceptor([{ name: "files" }], options))
-  async uploads(@Body() data: { type: string }, @UploadedFiles() upload: any) {
+  uploads(@Body() data: { type: string }, @UploadedFiles() upload: any) {
     return {
-      files: await this.fileService.uploads(upload.files, data),
+      files: this.fileService.uploads(upload.files, data),
     };
   }
 
