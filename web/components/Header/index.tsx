@@ -1,23 +1,13 @@
 import { useState } from "react";
 import { useUser } from "../../hooks/useUser";
-import axios from "../../lib/axios";
 import LoginForm from "../../components/LoginForm";
 import RegisterForm from "../../components/RegisterForm";
 
 export default function Header() {
-  const { currentUser, setCurrentUser } = useUser();
+  const { currentUser, setCurrentUser, logout } = useUser();
   const [isLoginModalOpen, setIsLoginModalOpen] = useState<boolean>(false);
   const [isRegisterModalOpen, setIsRegisterModalOpen] =
     useState<boolean>(false);
-
-  async function onLogout() {
-    await axios({
-      url: "auth/logout",
-      method: "post",
-    });
-
-    setCurrentUser(null);
-  }
 
   return (
     <>
@@ -67,7 +57,11 @@ export default function Header() {
               </li>
               <li>
                 {currentUser && (
-                  <a href="#" className="font-bold px-4" onClick={onLogout}>
+                  <a
+                    href="#"
+                    className="font-bold px-4"
+                    onClick={() => logout()}
+                  >
                     Logout
                   </a>
                 )}
