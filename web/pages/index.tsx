@@ -1,12 +1,29 @@
 import type { NextPage } from "next";
 import ProductList from "../components/ProductList";
+import Cart from "../components/Cart";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
+import Product from "../components/Product";
+import CategoryFilters from "../components/CategoryFilters";
+import Head from "../components/Head";
+import Checkout from "../components/Checkout";
+import Thankyou from "../components/Thankyou";
+import Hero from "../components/Hero";
+import Order from "../components/Order";
+import Landing from "../components/Landing";
 
 const Home: NextPage = () => {
   return (
     <div>
       <Header />
+      <Head />
+      <Checkout />
+      <Product />
+      <Cart />
+      <CategoryFilters />
+      <Landing />
+      <Hero />
+      <Order />
 
       <div
         style={{
