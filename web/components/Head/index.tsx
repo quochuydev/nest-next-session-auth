@@ -520,7 +520,7 @@ export default function Example() {
                       alt=""
                       className="w-5 h-auto block flex-shrink-0"
                     />
-                    <span className="ml-3 block text-sm font-medium">CAD</span>
+                    <span className="ml-3 block text-sm font-medium">US</span>
                     <span className="sr-only">, change currency</span>
                   </a>
                 </div>

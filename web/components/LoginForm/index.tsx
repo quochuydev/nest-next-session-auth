@@ -3,7 +3,12 @@ import { ToastContainer, toast } from "react-toastify";
 import axios from "../../lib/axios";
 import Modal from "../Modal";
 
-function LoginForm({ onClose, onSuccess }: any): React.ReactElement {
+function LoginForm({
+  open,
+  setOpen,
+  onClose,
+  onSuccess,
+}: any): React.ReactElement {
   const [loginUser, setLoginUser] = useState<{
     username: string;
     password: string;
@@ -41,6 +46,8 @@ function LoginForm({ onClose, onSuccess }: any): React.ReactElement {
     <>
       <ToastContainer />
       <Modal
+        open={open}
+        setOpen={setOpen}
         title={"Login"}
         footer={
           <>

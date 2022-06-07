@@ -178,7 +178,7 @@ export default function FrameExample({ children }) {
       <Navigation.Section
         items={[
           {
-            label: "Back to Shopify",
+            label: "Back to web",
             icon: ArrowLeftMinor,
           },
         ]}

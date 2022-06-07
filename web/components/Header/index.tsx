@@ -74,12 +74,18 @@ export default function Header() {
 
       {isLoginModalOpen && (
         <LoginForm
+          open={isLoginModalOpen}
+          setOpen={setIsLoginModalOpen}
           onSuccess={(data: any) => setCurrentUser(data)}
           onClose={() => setIsLoginModalOpen(false)}
         />
       )}
       {isRegisterModalOpen && (
-        <RegisterForm onClose={() => setIsRegisterModalOpen(false)} />
+        <RegisterForm
+          open={isRegisterModalOpen}
+          setOpen={setIsRegisterModalOpen}
+          onClose={() => setIsRegisterModalOpen(false)}
+        />
       )}
     </>
   );

@@ -1,9 +1,49 @@
 import { useState, useCallback } from "react";
-import DropZoneComponent from "./DropZoneComponent";
+import {
+  DropZone as PolarisDropZone,
+  Stack,
+  Thumbnail,
+  Caption,
+} from "@shopify/polaris";
+import { NoteMinor } from "@shopify/polaris-icons";
 
-export default DropZone;
+function DropZoneComponent(props) {
+  const { files, handleDropZoneDrop } = props;
+  const validImageTypes = ["image/gif", "image/jpeg", "image/png"];
 
-function DropZone(props) {
+  const fileUpload = !files.length && <PolarisDropZone.FileUpload />;
+  const uploadedFiles = files.length > 0 && (
+    <Stack vertical>
+      {files.map((file, index) => (
+        <Stack alignment="center" key={index}>
+          <Thumbnail
+            size="small"
+            alt={file.name}
+            source={
+              file?.url
+                ? file.url
+                : validImageTypes.includes(file.type)
+                ? window.URL.createObjectURL(file)
+                : NoteMinor
+            }
+          />
+          <div>
+            {file.name} <Caption>{file.size} bytes</Caption>
+          </div>
+        </Stack>
+      ))}
+    </Stack>
+  );
+
+  return (
+    <PolarisDropZone onDrop={handleDropZoneDrop}>
+      {uploadedFiles}
+      {fileUpload}
+    </PolarisDropZone>
+  );
+}
+
+export default function DropZone(props) {
   const [files, setFiles] = useState([]);
 
   const handleDropZoneDrop = useCallback(

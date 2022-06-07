@@ -12,6 +12,7 @@ import Hero from "../components/Hero";
 import Order from "../components/Order";
 import Landing from "../components/Landing";
 import Newsletter from "../components/Newsletter";
+import Blogs from "../components/Blogs";
 import Blog from "../components/Blog";
 
 const Home: NextPage = () => {
@@ -23,13 +24,14 @@ const Home: NextPage = () => {
       <Cart />
       <ProductList />
       <ProductList />
-      <Blog />
+      <Blogs />
       <Checkout />
       {/* <CategoryFilters /> */}
       <Order />
       {/* <Landing /> */}
       <Newsletter />
       {/* <Hero /> */}
+      <Blog />
       <Footer />
     </div>
   );
