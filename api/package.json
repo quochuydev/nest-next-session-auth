@@ -12,6 +12,7 @@
     "start": "DB_URL=postgresql://postgres:secret@localhost:5432/kproject?schema=public nest start",
     "start:e2e": "DB_URL=postgresql://postgres:secret@localhost:5432/kproject?schema=public nest start",
     "start:dev": "nest start --watch",
+    "dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",

@@ -88,7 +88,7 @@ export default function Checkout() {
 
   return (
     <Layout {...{ cart }}>
-      <div>
+      <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
         <div className="mt-8">
           <h1 className="flex items-center justify-center font-bold text-indigo-600 text-md lg:text-3xl">
             Checkout

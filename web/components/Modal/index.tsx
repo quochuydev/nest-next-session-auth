@@ -1,5 +1,4 @@
 import React, { ReactElement } from "react";
-/* This example requires Tailwind CSS v2.0+ */
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { CheckIcon } from "@heroicons/react/outline";
@@ -46,7 +45,7 @@ export default function Example({ title, children, footer }: any) {
                       as="h3"
                       className="text-lg leading-6 font-medium text-gray-900"
                     >
-                      Payment successful
+                      {title}
                     </Dialog.Title>
                     <div className="mt-2">
                       <p className="text-sm text-gray-500">
@@ -54,7 +53,6 @@ export default function Example({ title, children, footer }: any) {
                         Consequatur amet labore.
                       </p>
                     </div>
-                    <div>{title}</div>
                     <div>{children}</div>
                     <div>{footer}</div>
                   </div>

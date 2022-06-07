@@ -13,7 +13,7 @@ Web & API
 
 ```
 (cd web && yarn dev) &
-(cd api && yarn start:dev)
+(cd api && yarn dev)
 ```
 
 E2E test
