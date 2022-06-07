@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import DropZoneComponent from './DropZoneComponent'
+import DropZoneComponent from "./DropZoneComponent";
 
 export default DropZone;
 
@@ -8,15 +8,23 @@ function DropZone(props) {
 
   const handleDropZoneDrop = useCallback(
     async (_dropFiles, acceptedFiles, _rejectedFiles) => {
-      console.log(acceptedFiles);
-      if(props.upload){
-        const newfiles = await props.upload(acceptedFiles);
-        return setFiles((files) => [...files, ...newfiles])
+      console.log({ acceptedFiles });
+      try {
+        if (props.upload) {
+          const result = await props.upload(acceptedFiles);
+          console.log(result);
+          setFiles((files) => [...files, ...result.files]);
+          return;
+        }
+        setFiles((files) => [...files, ...acceptedFiles]);
+      } catch (error) {
+        console.log(error);
       }
-      return setFiles((files) => [...files, ...acceptedFiles])
     },
-    [],
+    []
   );
 
-  return <DropZoneComponent files={files} handleDropZoneDrop={handleDropZoneDrop} />
+  return (
+    <DropZoneComponent files={files} handleDropZoneDrop={handleDropZoneDrop} />
+  );
 }

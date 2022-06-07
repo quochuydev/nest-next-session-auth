@@ -12,12 +12,14 @@ export default class UploadAdapter {
     data.append("files", file);
     return new Promise((resolve, reject) => {
       axios({
-        url: `${config.server}/api/files`,
+        url: `${config.server}/files`,
         method: "post",
         data,
+        headers: { "Content-Type": "multipart/form-data" },
       })
         .then((res) => {
           var resData = res.data;
+          console.log(resData);
           resData.default = resData.files[0].url;
           console.log("resData.files[0].url", resData.files[0].url);
           resolve(resData);

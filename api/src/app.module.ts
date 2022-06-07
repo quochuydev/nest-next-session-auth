@@ -9,6 +9,10 @@ import { AuthMiddleware } from "./modules/auth/auth.middleware";
 import { CartMiddleware } from "./modules/cart/cart.middleware";
 import { RoleModule } from "./modules/roles/role.module";
 import { CartModule } from "./modules/cart/cart.module";
+import { ProductModule } from "./modules/product/product.module";
+import { FileModule } from "./modules/file/file.module";
+import { CategoryModule } from "./modules/category/category.module";
+import { OrderModule } from "./modules/order/order.module";
 
 @Module({
   imports: [
@@ -17,6 +21,10 @@ import { CartModule } from "./modules/cart/cart.module";
     UserModule,
     RoleModule,
     CartModule,
+    ProductModule,
+    FileModule,
+    CategoryModule,
+    OrderModule,
   ],
   controllers: [AppController],
   providers: [AppService],

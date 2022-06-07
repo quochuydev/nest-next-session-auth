@@ -20,12 +20,13 @@ export class FileService {
     return this.fileRepository.find({});
   }
 
-  uploads(files, data): Promise<File[]> {
-    return Promise.all(files.map((file) => this.upload(file, data)));
+  async uploads(files, data): Promise<File[]> {
+    return Promise.all(files?.map((file) => this.upload(file, data)));
   }
 
   async upload(file: any, data?: Partial<File>): Promise<File> {
     const payload = await this._upload(file);
+    console.log({ payload });
     const newFile = new File({
       contentType: file.mimetype,
       size: file.size,
@@ -33,7 +34,9 @@ export class FileService {
       url: payload.url,
       ...data,
     });
-    return newFile.save();
+    const result = await newFile.save();
+    console.log({ result });
+    return result;
   }
 
   async _upload(file: any): Promise<IServiceFile> {

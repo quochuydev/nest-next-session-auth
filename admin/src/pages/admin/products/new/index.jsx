@@ -39,7 +39,7 @@ export default function OfficeProductNew() {
     console.log(data);
 
     axios({
-      url: `${config.server}/api/products`,
+      url: `${config.server}/api.back-office.product.create`,
       method: "post",
       data,
     })
@@ -88,12 +88,13 @@ export default function OfficeProductNew() {
               product={data}
               upload={async (files) => {
                 const data = new FormData();
-                data.append("files", files);
+                data.append("files", files[0]);
                 return new Promise((resolve, reject) => {
                   axios({
-                    url: `${config.server}/api/files`,
+                    url: `${config.server}/files`,
                     method: "post",
                     data,
+                    headers: { "Content-Type": "multipart/form-data" },
                   })
                     .then((res) => {
                       console.log("resData.files", res.data);
