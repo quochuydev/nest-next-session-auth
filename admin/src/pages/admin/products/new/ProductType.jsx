@@ -1,16 +1,19 @@
 import React, { useState, useCallback } from "react";
 import { Icon, Button, Autocomplete } from "@shopify/polaris";
-import { PlusMinor } from '@shopify/polaris-icons';
+import { PlusMinor } from "@shopify/polaris-icons";
 
 export default React.memo(AutocompleteComponent);
 
 function AutocompleteComponent(props) {
-  const { value: selectedOptions, allowMultiple = false } = props;
+  const { allowMultiple = false } = props;
+  const selectedOptions = props.value || [];
+
+  console.log({ selectedOptions });
 
   const deselectedOptions = [
-    {value: 'type1', label: 'Type 1'},
-    {value: 'type2', label: 'Type 2'},
-    {value: 'type3', label: 'Type 3'},
+    { value: "type1", label: "Type 1" },
+    { value: "type2", label: "Type 2" },
+    { value: "type3", label: "Type 3" },
   ];
 
   const [inputValue, setInputValue] = useState(selectedOptions);
@@ -26,28 +29,28 @@ function AutocompleteComponent(props) {
       }
 
       setTimeout(() => {
-        if (value === '') {
+        if (value === "") {
           setOptions(deselectedOptions);
           setLoading(false);
           return;
         }
-        const filterRegex = new RegExp(value, 'i');
+        const filterRegex = new RegExp(value, "i");
         const resultOptions = options.filter((option) =>
-          option.label.match(filterRegex),
+          option.label.match(filterRegex)
         );
         setOptions(resultOptions);
         setLoading(false);
       }, 300);
     },
-    [deselectedOptions, loading, options],
+    [deselectedOptions, loading, options]
   );
 
   const updateSelection = useCallback(
     (selected) => {
-      props.onData(selected)
-      setInputValue(allowMultiple ? selected.join(', ') : selected[0]);
+      props.onData(selected);
+      setInputValue(allowMultiple ? selected.join(", ") : selected[0]);
     },
-    [options],
+    [options]
   );
 
   const textField = (

@@ -12,6 +12,7 @@ import Hero from "../components/Hero";
 import Order from "../components/Order";
 import Landing from "../components/Landing";
 import Newsletter from "../components/Newsletter";
+import Blog from "../components/Blog";
 
 const Home: NextPage = () => {
   return (
@@ -22,6 +23,7 @@ const Home: NextPage = () => {
       <Cart />
       <ProductList />
       <ProductList />
+      <Blog />
       <Checkout />
       {/* <CategoryFilters /> */}
       <Order />

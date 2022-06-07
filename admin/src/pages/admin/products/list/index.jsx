@@ -10,8 +10,8 @@ export default function ProductList() {
 
   const fetchProducts = () => {
     axios({
-      method: "get",
-      url: `${config.server}/api/products`,
+      method: "post",
+      url: `${config.server}/api.back-office.product.getList`,
     })
       .then(function (response) {
         console.log(response.data?.items);
