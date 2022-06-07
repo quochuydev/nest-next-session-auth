@@ -15,6 +15,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/Landing/index.jsx", "components/Order/index.jsx", "components/Checkout/index.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/Footer/index.jsx", "components/Landing/index.jsx", "components/Order/index.jsx", "components/Checkout/index.jsx"],
   "exclude": ["node_modules"]
 }

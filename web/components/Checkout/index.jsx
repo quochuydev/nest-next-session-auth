@@ -258,7 +258,7 @@ export default function Checkout() {
                         <img
                           src="https://source.unsplash.com/user/erondu/500x500"
                           alt="image"
-                          className="w-60"
+                          className="w-40"
                         />
                       </div>
                       <div>
@@ -290,7 +290,7 @@ export default function Checkout() {
                         <img
                           src="https://source.unsplash.com/collection/190727/500x500"
                           alt="image"
-                          className="w-60"
+                          className="w-40"
                         />
                       </div>
                       <div>

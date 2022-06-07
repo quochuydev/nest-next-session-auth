@@ -11,21 +11,24 @@ import Thankyou from "../components/Thankyou";
 import Hero from "../components/Hero";
 import Order from "../components/Order";
 import Landing from "../components/Landing";
+import Newsletter from "../components/Newsletter";
 
 const Home: NextPage = () => {
   return (
     <div>
       <Header />
       <Head />
-      <Checkout />
       <Product />
       <Cart />
+      <ProductList />
+      <Checkout />
       <CategoryFilters />
-      <Landing />
-      <Hero />
       <Order />
+      {/* <Landing /> */}
+      <Newsletter />
+      <Hero />
 
-      <div
+      {/* <div
         style={{
           background: "linear-gradient(90deg, #667eea 0%, #764ba2 100%)",
         }}
@@ -59,9 +62,8 @@ const Home: NextPage = () => {
             Pre Order
           </button>
         </div>
-      </section>
+      </section> */}
 
-      <ProductList />
       <Footer />
     </div>
   );
