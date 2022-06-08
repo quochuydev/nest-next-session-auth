@@ -14,23 +14,39 @@ import Landing from "../components/Landing";
 import Newsletter from "../components/Newsletter";
 import Blogs from "../components/Blogs";
 import Blog from "../components/Blog";
+import axios from "axios";
 
-const Home: NextPage = () => {
+export async function getServerSideProps(context: any) {
+  const result = await axios({
+    url: "api.web.product.getList",
+    method: "post",
+  });
+
+  return {
+    props: {
+      products: result.data?.items || [],
+    },
+  };
+}
+
+const Home: NextPage = ({ products }: any) => {
   return (
     <div>
-      <Header />
+      {/* {JSON.stringify(products)} */}
+      {/* <Header /> */}
       <Head />
-      <Product />
+      <Product product={products[0]} />
       <Cart />
       <ProductList />
-      <ProductList />
-      <Blogs />
+      <ProductList {...{ products }} />
       <Checkout />
       {/* <CategoryFilters /> */}
       <Order />
       {/* <Landing /> */}
       <Newsletter />
       {/* <Hero /> */}
+      <Blogs />
+      <Blogs posts={[]} />
       <Blog />
       <Footer />
     </div>

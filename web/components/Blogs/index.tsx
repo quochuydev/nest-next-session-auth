@@ -1,5 +1,5 @@
 /* This example requires Tailwind CSS v2.0+ */
-const posts = [
+const initPosts = [
   {
     title: "Boost your conversion rate",
     href: "#",
@@ -56,7 +56,7 @@ const posts = [
   },
 ];
 
-export default function Example() {
+export default function Example({ posts = initPosts }) {
   return (
     <div className="relative bg-gray-50 pt-16 pb-20 px-4 sm:px-6 lg:pt-24 lg:pb-28 lg:px-8">
       <div className="absolute inset-0">

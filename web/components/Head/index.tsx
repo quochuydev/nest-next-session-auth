@@ -22,6 +22,9 @@ import {
   ShoppingBagIcon,
   XIcon,
 } from "@heroicons/react/outline";
+import { useUser } from "../../hooks/useUser";
+import LoginForm from "../../components/LoginForm";
+import RegisterForm from "../../components/RegisterForm";
 
 const navigation = {
   categories: [
@@ -159,9 +162,29 @@ function classNames(...classes: any) {
 
 export default function Example() {
   const [open, setOpen] = useState(false);
+  const { currentUser, setCurrentUser, logout } = useUser();
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState<boolean>(false);
+  const [isRegisterModalOpen, setIsRegisterModalOpen] =
+    useState<boolean>(false);
 
   return (
     <div className="bg-white">
+      {isLoginModalOpen && (
+        <LoginForm
+          open={isLoginModalOpen}
+          setOpen={setIsLoginModalOpen}
+          onSuccess={(data: any) => setCurrentUser(data)}
+          onClose={() => setIsLoginModalOpen(false)}
+        />
+      )}
+      {isRegisterModalOpen && (
+        <RegisterForm
+          open={isRegisterModalOpen}
+          setOpen={setIsRegisterModalOpen}
+          onClose={() => setIsRegisterModalOpen(false)}
+        />
+      )}
+
       {/* Mobile menu */}
       <Transition.Root show={open} as={Fragment}>
         <Dialog as="div" className="relative z-40 lg:hidden" onClose={setOpen}>
@@ -304,6 +327,7 @@ export default function Example() {
                     <a
                       href="#"
                       className="-m-2 p-2 block font-medium text-gray-900"
+                      onClick={() => setIsLoginModalOpen(true)}
                     >
                       Sign in
                     </a>
@@ -312,6 +336,7 @@ export default function Example() {
                     <a
                       href="#"
                       className="-m-2 p-2 block font-medium text-gray-900"
+                      onClick={() => setIsRegisterModalOpen(true)}
                     >
                       Create account
                     </a>
@@ -495,19 +520,43 @@ export default function Example() {
 
               <div className="ml-auto flex items-center">
                 <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                  <a
-                    href="#"
-                    className="text-sm font-medium text-gray-700 hover:text-gray-800"
-                  >
-                    Sign in
-                  </a>
-                  <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
-                  <a
-                    href="#"
-                    className="text-sm font-medium text-gray-700 hover:text-gray-800"
-                  >
-                    Create account
-                  </a>
+                  {!currentUser?.username && (
+                    <>
+                      <a
+                        href="#"
+                        className="text-sm font-medium text-gray-700 hover:text-gray-800"
+                        onClick={() => setIsLoginModalOpen(true)}
+                      >
+                        Sign in
+                      </a>
+                      <span
+                        className="h-6 w-px bg-gray-200"
+                        aria-hidden="true"
+                      />
+                      <a
+                        href="#"
+                        className="text-sm font-medium text-gray-700 hover:text-gray-800"
+                        onClick={() => setIsRegisterModalOpen(true)}
+                      >
+                        Create account
+                      </a>
+                    </>
+                  )}
+
+                  {currentUser?.username && (
+                    <>
+                      <p className="text-sm font-medium text-gray-700 hover:text-gray-800">
+                        {currentUser?.username}
+                      </p>
+                      <a
+                        href="#"
+                        className="text-sm font-medium text-gray-700 hover:text-gray-800"
+                        onClick={logout}
+                      >
+                        Logout
+                      </a>
+                    </>
+                  )}
                 </div>
 
                 <div className="hidden lg:ml-8 lg:flex">
