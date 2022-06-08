@@ -2,23 +2,23 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { Controller, Post, Body } from "@nestjs/common";
 import { AuthUser } from "../../../core/decorators";
-import { ProductDto } from "../blog.dto";
-import { Product } from "../blog.entity";
-import { ProductService } from "../blog.service";
+import { BlogDto } from "../blog.dto";
+import { Blog } from "../blog.entity";
+import { BlogService } from "../blog.service";
 
 @Controller()
-export class ProductController {
+export class BlogController {
   constructor(
-    private readonly productService: ProductService,
-    @InjectRepository(Product)
-    private readonly productRepository: Repository<Product>
+    private readonly blogService: BlogService,
+    @InjectRepository(Blog)
+    private readonly blogRepository: Repository<Blog>
   ) {}
 
-  @Post("api.back-office.product.get")
+  @Post("api.back-office.blog.get")
   async handle(
     @AuthUser("id") userId: string,
     @Body() data: any
-  ): Promise<Product> {
-    return this.productRepository.findOne(data.id);
+  ): Promise<Blog> {
+    return this.blogRepository.findOne(data.id);
   }
 }

@@ -3,11 +3,11 @@ import {
   IsBoolean,
   IsOptional,
   ValidateNested,
-} from 'class-validator';
-import { Type } from 'class-transformer';
-import { IsNumber, IsString } from 'class-validator';
+} from "class-validator";
+import { Type } from "class-transformer";
+import { IsNumber, IsString } from "class-validator";
 
-export class ProductDto {
+export class BlogDto {
   @IsOptional()
   @IsString()
   id: string;
@@ -30,7 +30,7 @@ export class ProductDto {
 
   @IsOptional()
   @IsString()
-  productType: string;
+  blogType: string;
 
   @IsOptional()
   @IsString()

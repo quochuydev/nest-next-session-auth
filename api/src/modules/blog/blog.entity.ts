@@ -2,7 +2,7 @@ import { Column, Entity, ManyToMany, JoinTable, OneToMany } from "typeorm";
 import { Base } from "../../core/entities/base";
 
 @Entity()
-export class Product extends Base<Product> {
+export class Blog extends Base<Blog> {
   @Column({ nullable: true })
   public title: string;
 

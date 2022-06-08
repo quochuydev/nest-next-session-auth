@@ -13,6 +13,10 @@ import { ProductModule } from "./modules/product/product.module";
 import { FileModule } from "./modules/file/file.module";
 import { CategoryModule } from "./modules/category/category.module";
 import { OrderModule } from "./modules/order/order.module";
+import { BlogModule } from "./modules/blog/blog.module";
+import { NotificationModule } from "./modules/notification/notification.module";
+import { DeviceModule } from "./modules/device/device.module";
+import { SettingModule } from "./modules/setting/setting.module";
 
 @Module({
   imports: [
@@ -25,6 +29,10 @@ import { OrderModule } from "./modules/order/order.module";
     FileModule,
     CategoryModule,
     OrderModule,
+    BlogModule,
+    NotificationModule,
+    DeviceModule,
+    SettingModule,
   ],
   controllers: [AppController],
   providers: [AppService],
