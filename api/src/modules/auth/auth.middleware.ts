@@ -18,7 +18,7 @@ export class AuthMiddleware implements NestMiddleware {
 
     const auth = await this.authService.getSession(token);
     req.user = _.get(auth, "user", null);
-    // console.log("AuthMiddleware", req.user);
+    console.log("AuthMiddleware", req.user);
 
     return next();
   }

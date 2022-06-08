@@ -4,7 +4,15 @@ import { ToastContainer, toast } from "react-toastify";
 import axios from "../../lib/axios";
 import Modal from "../Modal";
 
-function RegisterForm({ onClose }: { onClose: any }): React.ReactElement {
+function RegisterForm({
+  onClose,
+  open,
+  setOpen,
+}: {
+  onClose: any;
+  open: any;
+  setOpen: any;
+}): React.ReactElement {
   const [registerUser, setRegisterUser] = useState<{
     email: string;
     username: string;
@@ -47,9 +55,18 @@ function RegisterForm({ onClose }: { onClose: any }): React.ReactElement {
     <>
       <ToastContainer />
       <Modal
+        open={open}
+        setOpen={setOpen}
         title={"Register"}
         footer={
           <>
+            <button
+              onClick={onRegister}
+              className="text-white bg-indigo-600 active:bg-gray-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+            >
+              Register
+            </button>
+
             <button
               className="text-gray-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
               type="button"
@@ -57,12 +74,14 @@ function RegisterForm({ onClose }: { onClose: any }): React.ReactElement {
             >
               Close
             </button>
-            <button
+
+            {/* <button
+              type="button"
+              className="inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm"
               onClick={onRegister}
-              className="bg-gray-500 text-white active:bg-gray-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
             >
               Register
-            </button>
+            </button> */}
           </>
         }
       >

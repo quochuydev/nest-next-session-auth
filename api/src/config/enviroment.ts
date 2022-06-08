@@ -5,9 +5,14 @@ const getEnv = (key: string) => {
 };
 
 export const environment = {
+  app: {
+    host: "http://localhost:4000",
+  },
   db: {
     url:
       getEnv("DB_URL") ||
       "postgresql://postgres:secret@localhost:5432/kproject?schema=public",
   },
 };
+
+export default environment;
